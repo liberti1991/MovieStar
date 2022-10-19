@@ -2,9 +2,23 @@
 
 require_once("globals.php");
 require_once("db.php");
+// require_once("models/Message.php");
+// require_once("dao/UserDAO.php");
+
+// $message = new Message($BASE_URL);
+
+// $flassMessage = $message->getMessage();
+
+// if (!empty($flassMessage["msg"])) {
+//   // Limpar a mensagem
+//   $message->clearMessage();
+// }
+
+// $userDao = new UserDAO($conn, $BASE_URL);
+
+// $userData = $userDao->verifyToken(false);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +37,7 @@ require_once("db.php");
 
 <body>
   <header>
-    <nav id="main-navbar" class="navbar navbar-exapand-lg">
+    <nav id="main-navbar" class="navbar navbar-expand-lg">
       <a href="<?= $BASE_URL ?>" class="navbar-brand">
         <img src="<?= $BASE_URL ?>img/logo.svg" alt="MovieStar" id="logo">
         <span id="moviestar-title">MovieStar</span>
@@ -65,3 +79,8 @@ require_once("db.php");
       </div>
     </nav>
   </header>
+  <?php if (!empty($flassMessage["msg"])) : ?>
+    <div class="msg-container">
+      <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
+    </div>
+  <?php endif; ?>
