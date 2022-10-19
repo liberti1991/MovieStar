@@ -2,17 +2,17 @@
 
 require_once("globals.php");
 require_once("db.php");
-// require_once("models/Message.php");
+require_once("models/Message.php");
 // require_once("dao/UserDAO.php");
 
-// $message = new Message($BASE_URL);
+$message = new Message($BASE_URL);
 
-// $flassMessage = $message->getMessage();
+$flassMessage = $message->getMessage();
 
-// if (!empty($flassMessage["msg"])) {
-//   // Limpar a mensagem
-//   $message->clearMessage();
-// }
+if (!empty($flassMessage["msg"])) {
+  // Limpar a mensagem
+  $message->clearMessage();
+}
 
 // $userDao = new UserDAO($conn, $BASE_URL);
 
@@ -53,7 +53,7 @@ require_once("db.php");
       </form>
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav">
-          <?php if ($userData) : ?>
+          <!-- <?php if ($userData) : ?>
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>newmovie.php" class="nav-link">
                 <i class="far fa-plus-square"></i> Incluir Filme
@@ -70,11 +70,11 @@ require_once("db.php");
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>logout.php" class="nav-link">Sair</a>
             </li>
-          <?php else : ?>
+          <?php else : ?> -->
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar / Cadastrar</a>
             </li>
-          <?php endif; ?>
+          <!-- <?php endif; ?> -->
         </ul>
       </div>
     </nav>

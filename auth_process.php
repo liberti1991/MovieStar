@@ -6,6 +6,7 @@ require_once("models/User.php");
 require_once("models/Message.php");
 require_once("dao/UserDAO.php");
 
+$messege = new Message($BASE_URL);
 
 // Resgata o tipo do formulário
 $type = filter_input(INPUT_POST, "type");
@@ -25,7 +26,7 @@ if ($type === "register") {
 
     // Verificar se as senhas batem
     if ($password === $confirmpassword) {
-      
+      $messege->setMessage("Por favor , preencha todos os campos", "error", "back");
     }
   }
 } else if ($type === "login") {
