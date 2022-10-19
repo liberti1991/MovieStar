@@ -3,7 +3,7 @@
 require_once("globals.php");
 require_once("db.php");
 require_once("models/Message.php");
-// require_once("dao/UserDAO.php");
+require_once("dao/UserDAO.php");
 
 $message = new Message($BASE_URL);
 
@@ -14,9 +14,9 @@ if (!empty($flassMessage["msg"])) {
   $message->clearMessage();
 }
 
-// $userDao = new UserDAO($conn, $BASE_URL);
+$userDao = new UserDAO($conn, $BASE_URL);
 
-// $userData = $userDao->verifyToken(false);
+$userData = $userDao->verifyToken(false);
 
 ?>
 <!DOCTYPE html>
@@ -53,7 +53,7 @@ if (!empty($flassMessage["msg"])) {
       </form>
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav">
-          <!-- <?php if ($userData) : ?>
+          <?php if ($userData) : ?>
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>newmovie.php" class="nav-link">
                 <i class="far fa-plus-square"></i> Incluir Filme
@@ -70,11 +70,11 @@ if (!empty($flassMessage["msg"])) {
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>logout.php" class="nav-link">Sair</a>
             </li>
-          <?php else : ?> -->
+          <?php else : ?>
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar / Cadastrar</a>
             </li>
-          <!-- <?php endif; ?> -->
+          <?php endif; ?>
         </ul>
       </div>
     </nav>
