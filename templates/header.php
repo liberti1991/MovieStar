@@ -1,27 +1,26 @@
 <?php
 
-require_once("globals.php");
-require_once("db.php");
-require_once("models/Message.php");
-require_once("dao/UserDAO.php");
+  require_once("globals.php");
+  require_once("db.php");
+  require_once("models/Message.php");
+  require_once("dao/UserDAO.php");
 
-$message = new Message($BASE_URL);
+  $message = new Message($BASE_URL);
 
-$flassMessage = $message->getMessage();
+  $flassMessage = $message->getMessage();
 
-if (!empty($flassMessage["msg"])) {
-  // Limpar a mensagem
-  $message->clearMessage();
-}
+  if(!empty($flassMessage["msg"])) {
+    // Limpar a mensagem
+    $message->clearMessage();
+  }
 
-$userDao = new UserDAO($conn, $BASE_URL);
+  $userDao = new UserDAO($conn, $BASE_URL);
 
-$userData = $userDao->verifyToken(false);
+  $userData = $userDao->verifyToken(false);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +33,6 @@ $userData = $userDao->verifyToken(false);
   <!-- CSS do projeto -->
   <link rel="stylesheet" href="<?= $BASE_URL ?>css/styles.css">
 </head>
-
 <body>
   <header>
     <nav id="main-navbar" class="navbar navbar-expand-lg">
@@ -53,7 +51,7 @@ $userData = $userDao->verifyToken(false);
       </form>
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav">
-          <?php if ($userData) : ?>
+          <?php if($userData): ?>
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>newmovie.php" class="nav-link">
                 <i class="far fa-plus-square"></i> Incluir Filme
@@ -70,7 +68,7 @@ $userData = $userDao->verifyToken(false);
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>logout.php" class="nav-link">Sair</a>
             </li>
-          <?php else : ?>
+          <?php else: ?>
             <li class="nav-item">
               <a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar / Cadastrar</a>
             </li>
@@ -79,7 +77,7 @@ $userData = $userDao->verifyToken(false);
       </div>
     </nav>
   </header>
-  <?php if (!empty($flassMessage["msg"])) : ?>
+  <?php if(!empty($flassMessage["msg"])): ?>
     <div class="msg-container">
       <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
     </div>
